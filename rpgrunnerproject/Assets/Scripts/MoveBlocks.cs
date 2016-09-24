@@ -14,15 +14,27 @@ public class MoveBlocks : MonoBehaviour {
 	//win condition or lose condition 	
 	// Use this for initialization
 	
-	bool firstSelection = true;
+	//bool firstSelection = true;
 	//array[2] firstBlock
 	//array[2] secondBlock 
 	void Start () { 
+
 	}
 	
 	void Update () {
-	
+		
 	} 
+
+
+
+
+
+
+
+
+
+
+
 	//void ResetBoard()
 		//code to just auto fill all the rows and collums
 	//void BlockTouch()when you select a sprite highlight it()
