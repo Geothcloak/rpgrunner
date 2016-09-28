@@ -45,8 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\NewBlock.cs" />
      <Compile Include="Assets\Scripts\MoveBlocks.cs" />
-     <Compile Include="Assets\Scripts\SpawnBlocks.cs" />
      <Compile Include="Assets\Scripts\SwapBlocks.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity 5.4/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
