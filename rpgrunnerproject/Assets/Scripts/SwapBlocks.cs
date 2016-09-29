@@ -52,6 +52,28 @@ public class SwapBlocks : MonoBehaviour {
 		Vector3 tempVector3 = blockPosition[0];
 		blockForSwitch[0].transform.position = blockPosition[1];
 		blockForSwitch[1].transform.position = tempVector3;
+		// int[2] tempFirst;
+		// int[2] tempSecond;
+		// GameObject tempBlocksInPlay;
+		
+		//	for ( int i = 7; i >= 0; i-- ){
+		//		for ( int ii = 7; ii >= 0; ii--){
+		//			//i = columns   ii = rows
+		//			if (blocksInPlay[i,ii] == blockForSwitch[0]){ //look at there positions?
+		//				tempFirst[0] = i;
+		//				tempFirst[1] = ii;
+		//			}
+		//			if (blocksInPlay[i,ii] == blockForSwitch[1]{  // "                 "
+		//				tempSecond[0] = i;
+		//				tempSecond[1] = ii;
+		//			}
+		//
+		//		}
+		//	}
+		//	store gameobject blocks in temp and then switch them in the array.
+		//	tempBlocksInPlay = blocksInPlay[tempFirst[0], tempFirst[1]];
+		//	blocksInPlay[tempFirst[0],tempFirst[1]] = blocksInPlay[tempSecond[0], tempSecond[1]];
+		//	blocksInPlay[tempSecond[0], tempSecond[1]] = tempBlocksInPlay;	
 		
 		// swap positions in array *****************************************************************************************************		
 		// check
@@ -79,7 +101,7 @@ public class SwapBlocks : MonoBehaviour {
 						matches = 0;
 					}		
 					if (matches == 3){
-						//delete blocks;   *****************************************************************************************************
+						//delete blocks;   *******************************logic for 3 matches. 2 on end and 1 on next row counts?**********************************************************************
 						//spawn in missing blocks *****************************************************************************************************
 						//break;
 					}

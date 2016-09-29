@@ -2,52 +2,83 @@
 using System.Collections;
 
 public class SwapBlocks : MonoBehaviour {
+	//holder for vector positions of blocks for swap
 	public Vector3[] blockPosition;
+	//holder for gameobjects for swapping
 	public GameObject[] blockForSwitch;
 	
+	//array of all current blocks in play in order to do checks
 	GameObject[,] blocksInPlay;
+
+	//type of block that we spawn in that is random on spawn.
 	public GameObject genericBlock;
 
 	void Start () {
+		//populate game
 		NewGameSpawn();
 	}
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown(0)){
 			Debug.Log("pressed left mouse");
+			//after holding down mouse get the first blocks position
 			GetPosition(0);
 		}	
 		if (Input.GetMouseButtonUp(0)){
 			Debug.Log("released left mouse");
+			//after letting go of mouse get second blocks position and if 
+			//you choose two blocks then swap them
 			GetPosition(1);
 			if (blockForSwitch[0] != null && blockForSwitch[1] != null){	
 				Swap();
 			}
 		}
 	}
+
+	//function to retreive position and gameobject to put in holder for swap.
 	void GetPosition(int blockIndex){
 		var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit2D hit;
 		hit = Physics2D.Raycast (new Vector2(mousePosition.x,mousePosition.y),Vector2.zero,Mathf.Infinity);
-		if (hit != null && hit.collider != null){
-		//	SpriteRenderer blockRenderer = hit.collider.gameObject.GetComponent<SpriteRenderer>();
-		//	blockRenderer.color = Color.white; 
+		if (hit != null && hit.collider != null){ 
 			blockPosition[blockIndex] = hit.collider.gameObject.transform.position;
 		   	blockForSwitch[blockIndex] = hit.collider.gameObject;
 		}
 	}
+
+	//swap block locations
 	void Swap() {
-		// swap blocks
 		Vector3 tempVector3 = blockPosition[0];
 		blockForSwitch[0].transform.position = blockPosition[1];
 		blockForSwitch[1].transform.position = tempVector3;
-		// swap positions in array
+		// int[2] tempFirst;
+		// int[2] tempSecond;
+		// GameObject tempBlocksInPlay;
 		
+		//	for ( int i = 7; i >= 0; i-- ){
+		//		for ( int ii = 7; ii >= 0; ii--){
+		//			//i = columns   ii = rows
+		//			if (blocksInPlay[i,ii] == blockForSwitch[0]){ //look at there positions?
+		//				tempFirst[0] = i;
+		//				tempFirst[1] = ii;
+		//			}
+		//			if (blocksInPlay[i,ii] == blockForSwitch[1]{  // "                 "
+		//				tempSecond[0] = i;
+		//				tempSecond[1] = ii;
+		//			}
+		//
+		//		}
+		//	}
+		//	store gameobject blocks in temp and then switch them in the array.
+		//	tempBlocksInPlay = blocksInPlay[tempFirst[0], tempFirst[1]];
+		//	blocksInPlay[tempFirst[0],tempFirst[1]] = blocksInPlay[tempSecond[0], tempSecond[1]];
+		//	blocksInPlay[tempSecond[0], tempSecond[1]] = tempBlocksInPlay;	
+		
+		// swap positions in array *****************************************************************************************************		
 		// check
 		//
-		// if no match 3 then swap back
-		
+		// if no match 3 then swap back *****************************************************************************************************		
 		
 		
 		
@@ -70,7 +101,8 @@ public class SwapBlocks : MonoBehaviour {
 						matches = 0;
 					}		
 					if (matches == 3){
-						//delete blocks;
+						//delete blocks;   *******************************logic for 3 matches. 2 on end and 1 on next row counts?**********************************************************************
+						//spawn in missing blocks *****************************************************************************************************
 						//break;
 					}
 				   	
@@ -88,15 +120,15 @@ public class SwapBlocks : MonoBehaviour {
 						matches = 0;
 					}		
 					if (matches == 3){
-						//delete blocks;
-						//break;
+						//delete blocks; *****************************************************************************************************
+						//break; *****************************************************************************************************
 					}
 				   	
 				}
 		}
-
-
 	}
+
+	//run on awake to spawn in a new board. 
 	void NewGameSpawn(){
 		blocksInPlay = new GameObject[8,8];
 			for ( int i = 7; i >= 0; i-- ){
